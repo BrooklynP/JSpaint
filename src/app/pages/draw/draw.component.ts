@@ -18,6 +18,8 @@ export class DrawComponent implements OnInit {
 
   isMouseDown = false;
 
+  public CurrentColor = '000000';
+
   constructor() { }
 
   ngOnInit() {
@@ -27,8 +29,6 @@ export class DrawComponent implements OnInit {
     this.canvas.height = 500;
 
     this.canvasCtx = this.canvas.getContext('2d');
-
-    console.log(this.canvas);
 
     this.canvas.addEventListener('mousedown', (evt) => {
       this.currX = evt.clientX;
@@ -40,21 +40,22 @@ export class DrawComponent implements OnInit {
       this.isMouseDown = true;
     });
 
-
-
     this.canvas.addEventListener('mouseup', () => {
       this.isMouseDown = false;
     });
-
 
     this.canvas.addEventListener('mousemove', (evt) => {
       this.currX = evt.clientX;
       this.currY = evt.clientY;
       if (this.isMouseDown === true) {
         this.canvasCtx.lineTo(this.currX, this.currY);
+        this.canvasCtx.strokeStyle = '#' + this.CurrentColor;
         this.canvasCtx.stroke();
       }
     });
   }
 
+  setColour(colour: string) {
+    this.CurrentColor = colour;
+  }
 }
