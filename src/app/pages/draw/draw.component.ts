@@ -19,6 +19,7 @@ export class DrawComponent implements OnInit {
   isMouseDown = false;
 
   public CurrentColor = '000000';
+  public CurrentStrokeWidth = 1;
 
   constructor() { }
 
@@ -50,6 +51,8 @@ export class DrawComponent implements OnInit {
       if (this.isMouseDown === true) {
         this.canvasCtx.lineTo(this.currX, this.currY);
         this.canvasCtx.strokeStyle = '#' + this.CurrentColor;
+        this.canvasCtx.lineWidth = this.CurrentStrokeWidth;
+        console.log(this.CurrentStrokeWidth);
         this.canvasCtx.stroke();
       }
     });

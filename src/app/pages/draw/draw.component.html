@@ -4,4 +4,6 @@
     <button class="colourBtn" (click)="setColour('FF0000')" style="background-color: #FF0000;"></button>
     <button class="colourBtn" (click)="setColour('00FF00')" style="background-color: #00FF00;"></button>
     <button class="colourBtn" (click)="setColour('0000FF')" style="background-color: #0000FF;"></button>
+
+    <label for="brushSizeSlider">Brush Size</label><input id="brushSizeSlider" type="range" [(ngModel)]="CurrentStrokeWidth"><label>{{CurrentStrokeWidth}}</label>
 </footer>
