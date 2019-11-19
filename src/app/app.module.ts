@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DrawComponent } from './pages/draw/draw.component';
 import { FormsModule } from '@angular/forms';
+import { ColourManagerComponent } from './pages/colour-manager/colour-manager.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DrawComponent
+    DrawComponent,
+    ColourManagerComponent
   ],
   imports: [
     BrowserModule,

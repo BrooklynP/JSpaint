@@ -97,4 +97,8 @@ export class DrawComponent implements OnInit {
   setTool(tool: string) {
     this.toolBeingUsed = tool;
   }
+
+  goToColourManager() {
+    window.open('colours');
+  }
 }
