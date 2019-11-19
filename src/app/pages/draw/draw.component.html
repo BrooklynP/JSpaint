@@ -14,7 +14,7 @@
 
     <div>
         <button *ngFor="let colour of colourService.colours" class="colourBtn" (click)="setColour(colour)"
-            style.background-color="#{{colour}}"></button>
+            style.background-color="{{colour}}"></button>
         <button class="colourBtn addColourBtn" (click)="goToColourManager()">+</button>
     </div>
     <label for="brushSizeSlider">Brush Size</label><input min="1" id="brushSizeSlider" type="range"

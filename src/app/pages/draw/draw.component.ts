@@ -24,7 +24,7 @@ export class DrawComponent implements OnInit {
 
   currentColourIndex = 0;
 
-  public CurrentColor = '000000';
+  public CurrentColor = '#000000';
   public CurrentStrokeWidth = 1;
   public toolBeingUsed = 'Draw';
 
@@ -42,10 +42,10 @@ export class DrawComponent implements OnInit {
       this.currX = evt.clientX;
       this.currY = evt.clientY;
       this.isMouseDown = true;
+      this.startX = evt.clientX;
+      this.startY = evt.clientY;
 
-      if (this.toolBeingUsed === 'Line') {
-        this.startX = evt.clientX;
-        this.startY = evt.clientY;
+      if (this.toolBeingUsed === 'Line' || this.toolBeingUsed === 'Rectangle') {
         return;
       }
 
@@ -54,16 +54,23 @@ export class DrawComponent implements OnInit {
     });
 
     this.canvas.addEventListener('mouseup', (evt) => {
-
+      this.endX = evt.clientX;
+      this.endY = evt.clientY;
       if (this.toolBeingUsed === 'Line') {
-        this.endX = evt.clientX;
-        this.endY = evt.clientY;
+
 
         this.canvasCtx.beginPath();
         this.canvasCtx.moveTo(this.startX, this.startY);
         this.canvasCtx.lineTo(this.endX, this.endY);
-        this.canvasCtx.strokeStyle = '#' + this.CurrentColor;
+        this.canvasCtx.strokeStyle = this.CurrentColor;
         this.canvasCtx.lineWidth = this.CurrentStrokeWidth;
+        this.canvasCtx.stroke();
+      }
+      if (this.toolBeingUsed === 'Rectangle') {
+        this.canvasCtx.beginPath();
+        this.canvasCtx.strokeStyle = this.CurrentColor;
+        this.canvasCtx.lineWidth = this.CurrentStrokeWidth;
+        this.canvasCtx.rect(this.startX, this.startY, this.endX - this.startX, this.endY - this.startY);
         this.canvasCtx.stroke();
       }
 
@@ -76,7 +83,7 @@ export class DrawComponent implements OnInit {
       if (this.isMouseDown === true) {
         if (this.toolBeingUsed === 'Draw') {
           this.canvasCtx.lineTo(this.currX, this.currY);
-          this.canvasCtx.strokeStyle = '#' + this.CurrentColor;
+          this.canvasCtx.strokeStyle = this.CurrentColor;
           this.canvasCtx.lineWidth = this.CurrentStrokeWidth;
           this.canvasCtx.stroke();
         } else
@@ -91,6 +98,7 @@ export class DrawComponent implements OnInit {
   }
 
   setColour(colour: string) {
+    console.log(colour);
     this.CurrentColor = colour;
   }
   setTool(tool: string) {

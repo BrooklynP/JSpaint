@@ -21,11 +21,17 @@ export class ColourManagerComponent implements OnInit {
     this.currentRed.toString() + ',' +
     this.currentGreen.toString() + ',' +
     this.currentBlue.toString() + ',' +
-    (this.currentAlpha).toString() + ')';
+    this.currentAlpha.toString() + ')';
   }
 
   saveColour() {
-    this.coloursService.createColour(this.currentRed.toString(16) + this.currentGreen.toString(16) + this.currentBlue.toString(16));
+    console.log(this.currentRed.toString(16));
+    console.log(this.currentGreen.toString(16));
+    console.log(this.currentBlue.toString(16));
+    console.log(this.currentAlpha.toString(16));
+    console.log(this.currentRed.toString(16) + this.currentGreen.toString(16) + this.currentBlue.toString(16));
+    console.log(this.coloursService.RGBtoHex(this.currentRed, this.currentBlue, this.currentGreen));
+    this.coloursService.createColour(this.coloursService.RGBtoHex(this.currentRed, this.currentGreen, this.currentBlue));
     this.router.navigateByUrl('');
   }
 
