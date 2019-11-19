@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ColoursService } from 'src/app/services/colours.service';
 
 @Component({
   selector: 'app-draw',
@@ -20,11 +21,13 @@ export class DrawComponent implements OnInit {
 
   isMouseDown = false;
 
+  currentColourIndex = 0;
+
   public CurrentColor = '000000';
   public CurrentStrokeWidth = 1;
   public toolBeingUsed = 'Draw';
 
-  constructor() { }
+  constructor(public colourService: ColoursService) { }
 
   ngOnInit() {
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement;

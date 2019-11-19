@@ -12,11 +12,8 @@
 <footer class="controlPanel">
     <p>{{toolBeingUsed}}</p>
 
-    <button class="colourBtn" (click)="setColour('000000')" style="background-color: #000000;"></button>
-    <button class="colourBtn" (click)="setColour('FF0000')" style="background-color: #FF0000;"></button>
-    <button class="colourBtn" (click)="setColour('00FF00')" style="background-color: #00FF00;"></button>
-    <button class="colourBtn" (click)="setColour('0000FF')" style="background-color: #0000FF;"></button>
 
+    <button *ngFor="let colour of colourService.colours" class="colourBtn" (click)="setColour(colour)" style.background-color="#{{colour}}"></button>
     <label for="brushSizeSlider">Brush Size</label><input min="1" id="brushSizeSlider" type="range"
         [(ngModel)]="CurrentStrokeWidth"><label>{{CurrentStrokeWidth}}</label>
 </footer>
