@@ -1,1 +1,6 @@
-<p>colour-manager works!</p>
+<div class="preview" [style.background-color]="getColour()"></div>
+<label>Red</label><input min='0' max='255' type="range" [(ngModel)]="currentRed"><label>{{currentRed}}</label><br>
+<label>Green</label><input min='0' max='255' type="range" [(ngModel)]="currentGreen"><label>{{currentGreen}}</label><br>
+<label>Blue</label><input min='0' max='255' type="range" [(ngModel)]="currentBlue"><label>{{currentBlue}}</label><br>
+<label>Alpha</label><input min='0' max='1' value='1' step="0.01" type="range" [(ngModel)]="currentAlpha"><label>{{currentAlpha}}<label><br>
+<button (click)="saveColour()">Add To Saved Colours</button>

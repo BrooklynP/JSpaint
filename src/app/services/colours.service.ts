@@ -10,6 +10,10 @@ export class ColoursService {
     return this.colours[index];
   }
 
+  public createColour(colour: string) {
+    this.colours.push(colour);
+  }
+
 
   constructor() { }
 }

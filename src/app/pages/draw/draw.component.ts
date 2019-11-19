@@ -58,11 +58,6 @@ export class DrawComponent implements OnInit {
         this.endX = evt.clientX;
         this.endY = evt.clientY;
 
-        console.log(this.startX);
-        console.log(this.startY);
-        console.log(this.endX);
-        console.log(this.endY);
-
         this.canvasCtx.beginPath();
         this.canvasCtx.moveTo(this.startX, this.startY);
         this.canvasCtx.lineTo(this.endX, this.endY);
