@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColoursService } from 'src/app/services/colours.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-draw',
@@ -27,7 +28,7 @@ export class DrawComponent implements OnInit {
   public CurrentStrokeWidth = 1;
   public toolBeingUsed = 'Draw';
 
-  constructor(public colourService: ColoursService) { }
+  constructor(public colourService: ColoursService, public router: Router) { }
 
   ngOnInit() {
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -97,6 +98,6 @@ export class DrawComponent implements OnInit {
   }
 
   goToColourManager() {
-    window.open('colours');
+    this.router.navigateByUrl('colours');
   }
 }

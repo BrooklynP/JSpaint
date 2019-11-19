@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColoursService } from 'src/app/services/colours.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-colour-manager',
@@ -13,7 +14,7 @@ export class ColourManagerComponent implements OnInit {
   public currentBlue = 0;
   public currentAlpha = 1;
 
-  constructor(public coloursService: ColoursService) { }
+  constructor(public coloursService: ColoursService, public router: Router) { }
 
   getColour() {
     return 'rgba(' +
@@ -25,7 +26,7 @@ export class ColourManagerComponent implements OnInit {
 
   saveColour() {
     this.coloursService.createColour(this.currentRed.toString(16) + this.currentGreen.toString(16) + this.currentBlue.toString(16));
-    console.log(this.coloursService.colours);
+    this.router.navigateByUrl('');
   }
 
   ngOnInit() {
