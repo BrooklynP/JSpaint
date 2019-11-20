@@ -39,13 +39,9 @@ export class DrawComponent implements OnInit {
     this.canvas.width = this.canvasWidth;
     this.canvas.height = this.canvasHeight;
 
-
-
     this.canvasCtx = this.canvas.getContext('2d');
 
-    //set background colour
-    this.canvasCtx.fillStyle = "white";
-    this.canvasCtx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+    this.clearCanvas();
 
     this.canvas.addEventListener('mousedown', (evt) => {
       this.currX = evt.clientX;
@@ -116,5 +112,18 @@ export class DrawComponent implements OnInit {
 
   goToColourManager() {
     this.router.navigateByUrl('colours');
+  }
+
+  saveImage(){
+    const link = (document.getElementById('downloadImageLink') as HTMLAnchorElement);
+    const fileName = 'image.png'
+    link.setAttribute('download', fileName);
+    link.setAttribute('href', this.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+    link.click();
+  }
+
+  clearCanvas(){
+    this.canvasCtx.fillStyle = "white";
+    this.canvasCtx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
   }
 }
