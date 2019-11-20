@@ -12,13 +12,13 @@ export class DrawComponent implements OnInit {
   canvas: HTMLCanvasElement;
   canvasCtx: CanvasRenderingContext2D;
 
-  currX;
-  currY;
+  currX: number;
+  currY: number;
 
-  startX;
-  startY;
-  endX;
-  endY;
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
 
   isMouseDown = false;
 
@@ -53,7 +53,7 @@ export class DrawComponent implements OnInit {
       if (this.toolBeingUsed === 'Line' || this.toolBeingUsed === 'Rectangle') {
         return;
       }
-      else if(this.toolBeingUsed === 'Fill'){
+      else if (this.toolBeingUsed === 'Fill') {
         this.fillCanvas(this.CurrentColor);
         return;
       }
@@ -96,18 +96,17 @@ export class DrawComponent implements OnInit {
           this.canvasCtx.lineWidth = this.CurrentStrokeWidth;
           this.canvasCtx.stroke();
         } else
-        if (this.toolBeingUsed === 'Eraser') {
-          this.canvasCtx.lineTo(this.currX, this.currY);
-          this.canvasCtx.strokeStyle = '#ffffff';
-          this.canvasCtx.lineWidth = this.CurrentStrokeWidth;
-          this.canvasCtx.stroke();
-        }
+          if (this.toolBeingUsed === 'Eraser') {
+            this.canvasCtx.lineTo(this.currX, this.currY);
+            this.canvasCtx.strokeStyle = '#ffffff';
+            this.canvasCtx.lineWidth = this.CurrentStrokeWidth;
+            this.canvasCtx.stroke();
+          }
       }
     });
   }
 
   setColour(colour: string) {
-    console.log(colour);
     this.CurrentColor = colour;
   }
   setTool(tool: string) {
@@ -118,19 +117,21 @@ export class DrawComponent implements OnInit {
     this.router.navigateByUrl('colours');
   }
 
-  saveImage(){
-    const link = (document.getElementById('downloadImageLink') as HTMLAnchorElement);
-    const fileName = 'image.png'
-    link.setAttribute('download', fileName);
-    link.setAttribute('href', this.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
-    link.click();
+  saveImage() {
+    let fileName = window.prompt('Save Image: Enter a file name') + '.png';
+    if (fileName) {
+      const link = (document.getElementById('downloadImageLink') as HTMLAnchorElement);
+      link.setAttribute('download', fileName);
+      link.setAttribute('href', this.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+      link.click();
+    }
   }
 
-  clearCanvas(){
+  clearCanvas() {
     this.fillCanvas('white');
   }
 
-  fillCanvas(colour: string){
+  fillCanvas(colour: string) {
     this.canvasCtx.fillStyle = colour;
     this.canvasCtx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
   }
