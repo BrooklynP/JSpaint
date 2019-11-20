@@ -28,15 +28,24 @@ export class DrawComponent implements OnInit {
   public CurrentStrokeWidth = 1;
   public toolBeingUsed = 'Draw';
 
+  private readonly canvasWidth = 800;
+  private readonly canvasHeight = 500;
+
   constructor(public colourService: ColoursService, public router: Router) { }
 
   ngOnInit() {
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
 
-    this.canvas.width = 800;
-    this.canvas.height = 500;
+    this.canvas.width = this.canvasWidth;
+    this.canvas.height = this.canvasHeight;
+
+
 
     this.canvasCtx = this.canvas.getContext('2d');
+
+    //set background colour
+    this.canvasCtx.fillStyle = "white";
+    this.canvasCtx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
 
     this.canvas.addEventListener('mousedown', (evt) => {
       this.currX = evt.clientX;

@@ -1,27 +1,24 @@
 <div class="top">
     <canvas id='canvas'>Your Browser Does Not Support Canvas :(</canvas>
-    <section>
+    <section class="controlPanel">
         <button (click)="setTool('Draw')">Draw</button>
         <button (click)="setTool('Eraser')">Eraser</button>
         <button (click)="setTool('Line')">Line</button>
         <button (click)="setTool('Rectangle')">Rectangle</button>
-
-        <button (click)="goToColourManager()">Go To Colours</button>
     </section>
 </div>
-<footer class="controlPanel">
+<footer class="currentControl">
     <p>{{toolBeingUsed}}</p>
 
-    <div >
+    <div>
         <div class="button-container" *ngFor="let colour of colourService.colours">
-                <button  class="colourBtn" (click)="setColour(colour)"
-                style.background-color="{{colour}}"></button>
+            <button class="colourBtn" (click)="setColour(colour)" style.background-color="{{colour}}"></button>
         </div>
-      
-<div class="button-container">
-        <button class="colourBtn addColourBtn" (click)="goToColourManager()">+</button>
 
-</div>
+        <div class="button-container">
+            <button class="colourBtn addColourBtn" (click)="goToColourManager()">+</button>
+
+        </div>
     </div>
     <label for="brushSizeSlider">Brush Size</label><input min="1" id="brushSizeSlider" type="range"
         [(ngModel)]="CurrentStrokeWidth"><label>{{CurrentStrokeWidth}}</label>
