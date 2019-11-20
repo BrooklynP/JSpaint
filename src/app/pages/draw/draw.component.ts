@@ -53,6 +53,10 @@ export class DrawComponent implements OnInit {
       if (this.toolBeingUsed === 'Line' || this.toolBeingUsed === 'Rectangle') {
         return;
       }
+      else if(this.toolBeingUsed === 'Fill'){
+        this.fillCanvas(this.CurrentColor);
+        return;
+      }
 
       this.canvasCtx.moveTo(this.currX, this.currY);
       this.canvasCtx.beginPath();
@@ -123,7 +127,11 @@ export class DrawComponent implements OnInit {
   }
 
   clearCanvas(){
-    this.canvasCtx.fillStyle = "white";
+    this.fillCanvas('white');
+  }
+
+  fillCanvas(colour: string){
+    this.canvasCtx.fillStyle = colour;
     this.canvasCtx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
   }
 }
