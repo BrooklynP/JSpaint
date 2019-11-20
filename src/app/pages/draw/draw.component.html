@@ -12,10 +12,16 @@
 <footer class="controlPanel">
     <p>{{toolBeingUsed}}</p>
 
-    <div>
-        <button *ngFor="let colour of colourService.colours" class="colourBtn" (click)="setColour(colour)"
-            style.background-color="{{colour}}"></button>
+    <div >
+        <div class="button-container" *ngFor="let colour of colourService.colours">
+                <button  class="colourBtn" (click)="setColour(colour)"
+                style.background-color="{{colour}}"></button>
+        </div>
+      
+<div class="button-container">
         <button class="colourBtn addColourBtn" (click)="goToColourManager()">+</button>
+
+</div>
     </div>
     <label for="brushSizeSlider">Brush Size</label><input min="1" id="brushSizeSlider" type="range"
         [(ngModel)]="CurrentStrokeWidth"><label>{{CurrentStrokeWidth}}</label>
